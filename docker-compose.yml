@@ -1,0 +1,29 @@
+version: '3'
+services:
+  web:
+    build: .
+    container_name: web_curiosity
+    ports:
+      - 8080:80
+    volumes:
+      - ./src:/var/www/html
+    links:
+      - db
+      
+  db:
+    image: mysql:8.0
+    container_name: mysql_curiosity
+    ports:
+      - "3306:3306"
+    volumes:
+      - /var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root 
+      - MYSQL_DATABASE=sys 
+      - MYSQL_USER=root 
+      - MYSQL_PASSWORD=root 
+      - MYSQL_ROOT_HOST=db 
+
+
+
+
